@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu | Saffron & Silk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Yatra+One&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav-wrap">
+    <a class="brand" href="index.html" aria-label="Saffron and Silk home"><span class="brand-mark">सा<span>•</span>र</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a class="active" href="menu.html">Menu</a>
+      <a href="index.html#story">Our story</a>
+    </nav>
+    <a class="nav-button" href="mailto:namaste@saffronandsilk.com">Reserve <span>↗</span></a>
+  </header>
+
+  <main class="menu-page">
+    <section class="menu-heading">
+      <p class="eyebrow"><span></span> A journey across India</p>
+      <h1>A feast of <em>flavours.</em></h1>
+      <div class="menu-tabs" role="tablist" aria-label="Menu categories">
+        <button class="tab active" data-category="chaat" role="tab">Chaat & small plates</button>
+        <button class="tab" data-category="mains" role="tab">From the kitchen</button>
+        <button class="tab" data-category="sweets" role="tab">Mithai & sweets</button>
+      </div>
+    </section>
+
+    <section class="menu-layout">
+      <div class="menu-image">
+        <img id="category-image" src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=900&q=85" alt="Indian street food and chutneys" />
+        <span class="image-caption">Made for sharing</span>
+      </div>
+
+      <div class="menu-list" id="menu-list">
+        <article class="menu-item"><div><h2>Pani Puri</h2><p>Mint, tamarind, spiced potato</p></div><strong>₹280</strong></article>
+        <article class="menu-item"><div><h2>Dahi Papdi Chaat</h2><p>Chickpea, yoghurt, pomegranate</p></div><strong>₹320</strong></article>
+        <article class="menu-item"><div><h2>Paneer Tikka</h2><p>Clay oven, mustard seed, lime pickle</p></div><strong>₹420</strong></article>
+        <article class="menu-item"><div><h2>Lucknowi Galouti</h2><p>Awadhi kebab, ulte tawe ka paratha</p></div><strong>₹480</strong></article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
