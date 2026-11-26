@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10131d" />
+  <title>RangPlay — Color Simulator</title>
+  <meta name="description" content="A virtual-credit color prediction simulator for learning probability. No real money." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="RangPlay home">
+        <span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>rang<span class="brand-light">play</span></span>
+      </a>
+
+      <p class="side-label">SIMULATOR</p>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-item active" href="#play"><span class="nav-symbol">◉</span> Color room</a>
+        <a class="nav-item" href="#history"><span class="nav-symbol">▤</span> Round history</a>
+        <a class="nav-item" href="#controls"><span class="nav-symbol">⚙</span> Demo controls</a>
+      </nav>
+
+      <div class="sidebar-note">
+        <span class="note-icon">ⓘ</span>
+        <strong>Practice only</strong>
+        <p>Virtual credits have no cash value. No deposits, withdrawals or prizes.</p>
+      </div>
+      <div class="sidebar-footer"><span class="online-dot"></span> Local demo · This browser only</div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="breadcrumb">SIMULATOR <span>/</span> COLOR ROOM</p>
+          <h1>Color room</h1>
+        </div>
+        <div class="topbar-right">
+          <span class="demo-badge"><span></span> VIRTUAL DEMO</span>
+          <div class="avatar" aria-label="Demo player">P</div>
+        </div>
+      </header>
+
+      <div class="notice" role="note">
+        <span class="notice-icon">✳</span>
+        <p><strong>Learning simulator</strong> <span>— Credits are fictional and cannot be purchased, cashed out or exchanged.</span></p>
+      </div>
+
+      <section class="summary-grid" aria-label="Session overview">
+        <article class="summary-card balance-card">
+          <div class="summary-top"><span>DEMO BALANCE</span><span class="card-icon">◈</span></div>
+          <strong id="balance">1,000 <small>credits</small></strong>
+          <p>Practice points · no monetary value</p>
+        </article>
+        <article class="summary-card">
+          <div class="summary-top"><span>CURRENT ROUND</span><span class="card-icon">#</span></div>
+          <strong id="round-id">#01842</strong>
+          <p><span class="live-dot"></span> <span id="round-status">Accepting demo picks</span></p>
+        </article>
+        <article class="summary-card timer-card">
+          <div class="summary-top"><span>TIME LEFT</span><span class="card-icon">◷</span></div>
+          <strong id="countdown">00:30</strong>
+          <p id="timer-caption">Next result in</p>
+        </article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel game-panel" id="play" aria-labelledby="game-title">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">MAKE A DEMO PICK</p>
+              <h2 id="game-title">Which color will appear?</h2>
+            </div>
+            <span class="fair-chip"><span>✓</span> 1 in 3 · equal odds</span>
+          </div>
+
+          <div class="color-options" role="group" aria-label="Choose a color">
+            <button class="color-option red" data-color="Red" type="button" aria-pressed="false">
+              <span class="color-orb"></span><strong>Red</strong><small>1 / 3 chance</small>
+            </button>
+            <button class="color-option green" data-color="Green" type="button" aria-pressed="false">
+              <span class="color-orb"></span><strong>Green</strong><small>1 / 3 chance</small>
+            </button>
+            <button class="color-option violet" data-color="Violet" type="button" aria-pressed="false">
+              <span class="color-orb"></span><strong>Violet</strong><small>1 / 3 chance</small>
+            </button>
+          </div>
+
+          <form id="pick-form" class="pick-form">
+            <div class="stake-heading">
+              <label for="stake">Virtual credits to use</label>
+              <span>Available: <strong id="available-balance">1,000</strong></span>
+            </div>
+            <div class="stake-row">
+              <div class="stake-input-wrap">
+                <span>◈</span>
+                <input id="stake" type="number" min="10" max="500" step="10" value="50" inputmode="numeric" aria-describedby="stake-help" />
+                <span class="input-unit">credits</span>
+              </div>
+              <button class="amount-chip" type="button" data-amount="50">+50</button>
+              <button class="amount-chip" type="button" data-amount="100">+100</button>
+              <button class="amount-chip" type="button" data-amount="250">+250</button>
+            </div>
+            <p class="form-help" id="stake-help">10–500 credits per round · Correct picks return 3×, including the credits used.</p>
+            <div class="pick-footer">
+              <p id="pick-message" aria-live="polite">Choose a color to continue.</p>
+              <button class="submit-button" id="submit-pick" type="submit" disabled>Choose a color <span>→</span></button>
+            </div>
+          </form>
+
+          <div class="result-banner" id="result-banner" aria-live="polite" hidden>
+            <span class="result-spark">✦</span>
+            <div><strong id="result-title">Round complete</strong><p id="result-detail"></p></div>
+          </div>
+        </section>
+
+        <aside class="panel controls-panel" id="controls" aria-labelledby="controls-title">
+          <div class="panel-heading compact">
+            <div>
+              <p class="section-kicker">OWNER SETTINGS</p>
+              <h2 id="controls-title">Demo controls</h2>
+            </div>
+            <span class="settings-icon">⚙</span>
+          </div>
+          <p class="controls-intro">Manage this local simulation. Changes apply in this browser only.</p>
+
+          <label class="control-label" for="duration">Round duration</label>
+          <div class="select-wrap">
+            <select id="duration">
+              <option value="15">15 seconds</option>
+              <option value="30" selected>30 seconds</option>
+              <option value="60">60 seconds</option>
+            </select>
+            <span>⌄</span>
+          </div>
+          <p class="control-hint">Takes effect from the next round.</p>
+
+          <div class="control-divider"></div>
+          <div class="toggle-row">
+            <div><strong>Round activity</strong><small id="activity-copy">Rounds are running</small></div>
+            <button id="pause-toggle" class="toggle-button" type="button" role="switch" aria-checked="true" aria-label="Pause or resume rounds"><span></span></button>
+          </div>
+          <button class="reset-button" id="reset-demo" type="button"><span>↻</span> Reset demo session</button>
+          <p class="owner-footnote">Results are randomly generated after a round closes. They cannot be selected or edited.</p>
+        </aside>
+      </div>
+
+      <section class="panel history-panel" id="history" aria-labelledby="history-title">
+        <div class="panel-heading history-heading">
+          <div>
+            <p class="section-kicker">TRANSPARENT RESULTS</p>
+            <h2 id="history-title">Recent rounds</h2>
+          </div>
+          <span class="history-count" id="history-count">0 results</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ROUND</th><th>RESULT</th><th>YOUR PICK</th><th>OUTCOME</th></tr></thead>
+            <tbody id="history-rows">
+              <tr class="empty-row"><td colspan="4">No rounds completed yet. Results will appear here.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="history-footnote">Each color has an equal 1/3 chance. Past results do not affect future rounds.</p>
+      </section>
+      <footer class="page-footer">RangPlay Simulator <span>·</span> Entertainment demo only <span>·</span> No real-world value</footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
